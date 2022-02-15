@@ -9,8 +9,8 @@ b = 100
 
 import numpy as np
 
-def predict(number: int = 1) -> int:
-    """Угадываем число бинарным поиском
+def bordershift_predict(number: int = 1) -> int:
+    """Угадываем число методом передвижения границ поиска
 
     Args:
         number (int, optional): Загаданное число. Defaults to 1.
@@ -40,7 +40,7 @@ def predict(number: int = 1) -> int:
     return count
 
 
-def score_game(predict) -> int:
+def score_game(bordershift_predict) -> int:
     """За какое количство попыток в среднем за 1000 подходов угадывает наш алгоритм
 
     Args:
@@ -54,7 +54,7 @@ def score_game(predict) -> int:
     random_array = np.random.randint(a, b, size=(1000))  # загадали список чисел
 
     for number in random_array:
-        count_ls.append(predict(number))
+        count_ls.append(bordershift_predict(number))
 
     score = int(np.mean(count_ls))
     print(f"Ваш алгоритм угадывает число в среднем за:{score} попыток")
@@ -63,4 +63,4 @@ def score_game(predict) -> int:
 
 if __name__ == "__main__":
     # RUN
-   score_game(predict)
+   score_game(bordershift_predict)
